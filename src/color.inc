@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 readonly COLOR_DIM="$(tput dim)"
 readonly COLOR_GREEN="$(tput setaf 2)"
 readonly COLOR_RED="$(tput setaf 1)"
