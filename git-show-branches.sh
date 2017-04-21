@@ -5,7 +5,7 @@ set -o errtrace # Exit on error inside any functions or sub-shells.
 set -o nounset  # Exit script on use of an undefined variable.
 set -o pipefail # Return exit status of the last command in the pipe that exited with a non-zero exit code
 
-readonly g_sSourceDirectory="$(dirname ${BASH_SOURCE[0]})"
+readonly g_sSourceDirectory="$(dirname $(readlink ${BASH_SOURCE[0]}))"
 
 source "${g_sSourceDirectory}/git-show-branch.sh"
 
