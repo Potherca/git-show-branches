@@ -5,7 +5,7 @@ set -o errtrace # Exit on error inside any functions or sub-shells.
 set -o nounset  # Exit script on use of an undefined variable.
 set -o pipefail # Return exit status of the last command in the pipe that exited with a non-zero exit code
 
-readonly g_sSourceDirectory="$(dirname $(readlink ${BASH_SOURCE[0]}))"
+readonly g_sSourceDirectory="$(unset CDPATH && cd $( dirname $0 )/ && pwd -P )"
 
 source "${g_sSourceDirectory}/git-show-branch.sh"
 
@@ -18,7 +18,7 @@ git_show_branches() {
     else
         validate_directory "${1}"
 
-        local -r sRootDirectory=$(readlink "${1}")
+        local -r sRootDirectory="$(unset CDPATH && cd $1 && pwd -P )"
 
         pushd "${sRootDirectory}" > /dev/null
         readonly sRootRepoHead="$(git rev-list --parents HEAD 2> /dev/null | tail -1 || echo '')"

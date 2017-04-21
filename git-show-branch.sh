@@ -6,7 +6,7 @@ set -o nounset  # Exit script on use of an undefined variable.
 set -o pipefail # Return exit status of the last command in the pipe that exited with a non-zero exit code
 
 if [[ -z ${g_sSourceDirectory-} ]];then
-    readonly g_sSourceDirectory="$(dirname $(readlink ${BASH_SOURCE[0]}))"
+    readonly g_sSourceDirectory="$(unset CDPATH && cd $( dirname $0 )/ && pwd -P )"
 fi
 
 source "${g_sSourceDirectory}/color.inc"
@@ -20,7 +20,7 @@ git_show_branch() {
 
     validate_directory "${1}"
 
-    local -r sDirectory=$(readlink "${1}")
+    local -r sDirectory=""$(unset CDPATH && cd $1/ && pwd -P )""
     local -r sRootRepoHead="${2:-}"
 
     pushd "${sDirectory}" > /dev/null
