@@ -51,7 +51,7 @@ git_show_branch() {
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
     export -f git_show_branch
 else
-    git_show_branch "${@}"
+    git_show_branch "${@:-}"
     exit ${?}
 fi
 

@@ -35,7 +35,7 @@ git_show_branches() {
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
     export -f git_show_branches
 else
-     git_show_branches "${@}"
+     git_show_branches "${@:-}"
     exit ${?}
 fi
 
