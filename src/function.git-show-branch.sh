@@ -4,7 +4,7 @@ git_show_branch() {
 
     validate_directory "${1}"
 
-    local -r sDirectory=""$(unset CDPATH && cd $1/ && pwd -P )""
+    local -r sDirectory=$(unset CDPATH && cd "${1}"/ && pwd -P )
     local -r sRootRepoHead="${2:-}"
 
     pushd "${sDirectory}" > /dev/null
@@ -28,7 +28,7 @@ git_show_branch() {
 
     printf '%-24s: %s\n' "${sRepo}" "${sBranch}"
 
-    return ${EX_OK}
+    return "${EX_OK}"
 }
 
 # EOF

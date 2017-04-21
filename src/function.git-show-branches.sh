@@ -2,14 +2,14 @@
 
 git_show_branches() {
 
-    local sRootRepoHead sRepoHead sDirectory sBranch sRepo
+    local sRootRepoHead sDirectory
 
     if [[ "$#" -lt 1 ]];then
-        error 'One parameter expected' ${EX_NOT_ENOUGH_PARAMETERS}
+        error 'One parameter expected' "${EX_NOT_ENOUGH_PARAMETERS}"
     else
         validate_directory "${1}"
 
-        local -r sRootDirectory="$(unset CDPATH && cd $1 && pwd -P )"
+        local -r sRootDirectory=$(unset CDPATH && cd "${1}" && pwd -P )
 
         pushd "${sRootDirectory}" > /dev/null
         readonly sRootRepoHead="$(git rev-list --parents HEAD 2> /dev/null | tail -1 || echo '')"
@@ -20,7 +20,7 @@ git_show_branches() {
         done
     fi
 
-    return ${EX_OK}
+    return "${EX_OK}"
 }
 
 # EOF
