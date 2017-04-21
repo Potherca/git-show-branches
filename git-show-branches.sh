@@ -18,7 +18,7 @@ git_show_branches() {
     else
         validate_directory "${1}"
 
-        local -r sRootDirectory=$(readlink -f "${1}")
+        local -r sRootDirectory=$(readlink "${1}")
 
         pushd "${sRootDirectory}" > /dev/null
         readonly sRootRepoHead="$(git rev-list --parents HEAD 2> /dev/null | tail -1 || echo '')"

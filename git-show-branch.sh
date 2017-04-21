@@ -20,7 +20,7 @@ git_show_branch() {
 
     validate_directory "${1}"
 
-    local -r sDirectory=$(readlink -f "${1}")
+    local -r sDirectory=$(readlink "${1}")
     local -r sRootRepoHead="${2:-}"
 
     pushd "${sDirectory}" > /dev/null
