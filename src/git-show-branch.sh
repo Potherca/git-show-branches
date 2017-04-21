@@ -10,9 +10,9 @@ if [[ -z ${g_sSourceDirectory-} ]];then
 fi
 
 source "${g_sSourceDirectory}/color.inc"
-source "${g_sSourceDirectory}/error.inc"
+source "${g_sSourceDirectory}/function.error.inc"
 source "${g_sSourceDirectory}/exit-codes.inc"
-source "${g_sSourceDirectory}/validate-directory.inc"
+source "${g_sSourceDirectory}/function.validate-directory.sh"
 
 declare g_iExitCode="${EX_OK}"
 
