@@ -8,8 +8,10 @@ set -o pipefail # Return exit status of the last command in the pipe that exited
 source "color.inc"
 source "exit-codes.inc"
 source "function.error.sh"
+source "function.handleParams.sh"
 source "function.validate-directory.sh"
 source 'function.git-show-branch.sh'
+source 'function.git-show-status.sh'
 
 if [[ ${BASH_SOURCE[0]} != $0 ]]; then
     export -f git_show_branch
