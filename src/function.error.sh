@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 error() {
-    echo "${COLOR_RED}ERROR${COLOR_RESET} ${1}" >&2
+    echo "${COLOR_RED}ERROR${RESET_TEXT} ${1}" >&2
     exit "${2}"
 }
 
