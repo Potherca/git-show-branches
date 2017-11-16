@@ -1,15 +1,23 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2154
+: declare "${g_bVerbose:=false}"
+
 git_show_branches() {
 
-    local sRootRepoHead sDirectory
+    declare g_aParams=()
 
-    if [[ "$#" -lt 1 ]];then
-        error 'One parameter expected' "${EX_NOT_ENOUGH_PARAMETERS}"
+    local sDirectory sRootDirectory sRootRepoHead
+
+    handleParams "${@}"
+
+    if [[ "${#g_aParams[@]}" -lt 1 ]];then
+        error 'Missing required parameter: <directory>' "${EX_NOT_ENOUGH_PARAMETERS}"
     else
-        validate_directory "${1}"
 
-        local -r sRootDirectory=$(unset CDPATH && cd "${1}" && pwd -P )
+        validate_directory "${g_aParams[0]}"
+
+        readonly sRootDirectory=$(unset CDPATH && cd "${g_aParams[0]}" && pwd -P )
 
         pushd "${sRootDirectory}" > /dev/null
         readonly sRootRepoHead="$(git rev-list --parents HEAD 2> /dev/null | tail -1 || echo '')"
