@@ -88,12 +88,14 @@ git_show_branch() {
         local -i iResult
         local sResult
 
-        iResult=0
+        if [[ $(git remote) != '' ]];then
+            iResult=0
 
-        sResult=$(git fetch -p 2>&1) || iResult=$?
+            sResult=$(git fetch -p 2>&1) || iResult=$?
 
-        if [[ ${iResult} != 0 ]];then
-            error "${sResult}" "${EX_ERROR_UPDATING}"
+            if [[ ${iResult} != 0 ]];then
+                error "${sResult}" "${EX_ERROR_UPDATING}"
+            fi
         fi
     }
 
