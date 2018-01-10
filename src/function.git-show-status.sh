@@ -5,6 +5,8 @@
 # --------------------------------------------------------------------------
 # shellcheck disable=SC2154
 : export "${g_bVerbose:=false}"
+# shellcheck disable=SC2154
+: export "${g_bIgnoreUntrackedFiles:=false}"
 
 git-show-status() {
 
@@ -48,7 +50,7 @@ git-show-status() {
     # --------------------------------------------------------------------------
     # Check for untracked files in the working directory
     # --------------------------------------------------------------------------
-    if [[ -z "${sGitStatus##*Untracked files:*}" ]];then
+    if [[ ${g_bIgnoreUntrackedFiles} = false && -z "${sGitStatus##*Untracked files:*}" ]];then
         aStatus+=('untracked files')
     fi
 
