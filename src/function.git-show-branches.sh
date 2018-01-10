@@ -12,7 +12,7 @@ git_show_branches() {
     handleParams "${@}"
 
     if [[ "${#g_aParams[@]}" -lt 1 ]];then
-        error 'Missing required parameter: <directory>' "${EX_NOT_ENOUGH_PARAMETERS}"
+        error 'Missing required parameter: <directory>' "${EXIT_NOT_ENOUGH_PARAMETERS}"
     else
 
         validate_directory "${g_aParams[0]}"
@@ -28,7 +28,7 @@ git_show_branches() {
         done
     fi
 
-    return "${EX_OK}"
+    return "${EXIT_OK}"
 }
 
 # EOF

@@ -19,7 +19,7 @@ git_show_branch() {
             sResult=$(git fetch -p 2>&1) || iResult=$?
 
             if [[ ${iResult} != 0 ]];then
-                error "${sResult}" "${EX_ERROR_UPDATING}"
+                error "${sResult}" "${EXIT_COULD_FETCH_FROM_REMOTE}"
             fi
         fi
     }
@@ -61,7 +61,7 @@ git_show_branch() {
 
     printf '%-24s: %s %s\n' "${sRepo}" "${sBranch}" "${sStatus}"
 
-    return "${EX_OK}"
+    return "${EXIT_OK}"
 }
 
 # EOF
