@@ -75,7 +75,7 @@ git-show-status() {
 
     if [[ "${sStatus}" != '' ]];then
         # Remove trailing slash `/`
-        sStatus="${sStatus: : -1}"
+        sStatus="${sStatus%/*}"
 
         sStatus="${TEXT_DIM}${COLOR_WHITE}(${sStatus}${COLOR_WHITE})${RESET_TEXT}"
     fi
